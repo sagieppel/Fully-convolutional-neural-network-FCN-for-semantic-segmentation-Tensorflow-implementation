@@ -24,7 +24,7 @@ Code for training the net available in TRAIN.py
 5) Set number of classes number in NUM_CLASSES
 6) If you are interested in using validation set during training, set UseValidationSet=True and the validation image folder to Valid_Image_Dir (assume that the labels for the validation image are also in  Label_Dir)
 
-### Instructions for prediction pixelwise annotation using trained net (in Inference.py)
+### Instructions for predicting pixelwise annotation using trained net (in Inference.py)
 Code for predicting using a trained net is available in: Inference.py
 1) Make sure you have trained model in logs_dir (See Train.py for creating trained model)
 2) Set the Image_Dir to the folder where the input image for prediction located.
