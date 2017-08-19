@@ -15,9 +15,8 @@ This network was run and trained with Python 3.6  Anaconda package and Tensorflo
 
 ## Tutorial
 
-## Training network:
-Code for training the net available in TRAIN.py
 ### Instructions for training (in TRAIN.py):
+Code for training the net available in TRAIN.py
 1) Set folder of train images in Train_Image_Dir
 2) Set folder for ground truth labels in Label_DIR
 3) The Label Maps should be saved as png image with the same name as the corresponding image and png ending
@@ -25,17 +24,15 @@ Code for training the net available in TRAIN.py
 5) Set number of classes number in NUM_CLASSES
 6) If you are interested in using validation set during training, set UseValidationSet=True and the validation image folder to Valid_Image_Dir (assume that the labels for the validation image are also in  Label_Dir)
 
-## Prediction using trained network
-## (pixelwise classification and segmentation of images)
+### Instructions for prediction pixelwise annotation using trained net (in Inference.py)
 Code for predicting using a trained net is available in: Inference.py
-### Instructions for prediction using trained net (in Inference.py)
 1) Make sure you have trained model in logs_dir (See Train.py for creating trained model)
 2) Set the Image_Dir to the folder where the input image for prediction located.
 3) Set number of classes in NUM_CLASSES
 4) Set Pred_Dir the folder where you want the output annotated images to be saved
 5) Run script
 
-## Evaluating net performance using intersection over union (IOU):
+### Evaluating net performance using intersection over union (IOU):
 Code for evaluating net intersection over union appear in: (Evaluate_Net_IOU.py)
 1) Make sure you have trained model in logs_dir (See Train.py for creating trained model)
 2) Set the Image_Dir to the folder where the input images for prediction are located
