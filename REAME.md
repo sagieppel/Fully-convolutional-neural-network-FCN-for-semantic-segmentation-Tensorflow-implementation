@@ -1,4 +1,4 @@
-#Fully convolutional neural network (FCN) for semantic segmentation tensorflow simple implementation.
+# Fully convolutional neural network (FCN) for semantic segmentation tensorflow simple implementation.
 
 This is a simple implementation of a fully convolutional neural network (FCN). The net is based on fully convolutional neural net described in the paper [Fully Convolutional Networks for Semantic Segmentation](https://arxiv.org/pdf/1605.06211.pdf).  The code is based on [FCN implementation](https://github.com/shekkizh/FCN.tensorflow)  by Sarath Shekkizhar with MIT license. The net is initialized using the pre-trained VGG16 model by Marvin Teichmann.
 
