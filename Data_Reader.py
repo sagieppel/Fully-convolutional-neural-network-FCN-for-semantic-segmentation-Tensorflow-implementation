@@ -159,9 +159,9 @@ class Data_Reader:
 
         for f in range(batch_size):
 ##.............Read image and labels from files.........................................................
-           Img = misc.imread(self.Image_Dir + "/" + self.SFiles[self.itr])
+           Img = misc.imread(self.Image_Dir + "/" + self.OrderedFiles[self.itr])
            Img=Img[:,:,0:3]
-           LabelName=self.SFiles[self.itr][0:-4]+".png"# Assume label name is same as image only with png ending
+           LabelName=self.OrderedFiles[self.itr][0:-4]+".png"# Assume label name is same as image only with png ending
            if self.ReadLabels:
               Label= misc.imread(self.Label_Dir + "/" + LabelName)
            self.itr+=1
