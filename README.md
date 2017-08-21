@@ -7,7 +7,7 @@ The input for the net is RGB image (Figure 1 right).
 The net produces pixelwise annotation as a matrix in the size of the image with the value of each pixel corresponding to its class (Figure 1 left).
 
 ![](/Figure1.png)
-Figure 1) Semantic segmentation of liquid in glass with FCN. Red=Glass, Blue=Liquid, White=Background
+Figure 1) Semantic segmentation of image of liquid in glass with FCN. Red=Glass, Blue=Liquid, White=Background
 
 ## Requirements
 This network was run with Python 3.6  Anaconda package and Tensorflow 1.1. The training was done using Nvidia GTX 1080, on Linux Ubuntu 16.04.
@@ -20,7 +20,7 @@ This network was run with Python 3.6  Anaconda package and Tensorflow 1.1. The t
 
 ### Instructions for training (in TRAIN.py):
 In: TRAIN.py
-1) Set folder of train images in Train_Image_Dir
+1) Set folder of training images in Train_Image_Dir
 2) Set folder for ground truth labels in Label_DIR
 3) The Label Maps should be saved as png image with the same name as the corresponding image and png ending
 4) Download pretrained [vgg16](ftp://mi.eng.cam.ac.uk/pub/mttt2/models/vgg16.npy) model and put in model_path (should be done automatically if you have internet connection)
@@ -30,7 +30,7 @@ In: TRAIN.py
 ### Instructions for predicting pixelwise annotation using trained net (in Inference.py)
 In: Inference.py
 1) Make sure you have trained model in logs_dir (See Train.py for creating trained model)
-2) Set the Image_Dir to the folder where the input image for prediction located.
+2) Set the Image_Dir to the folder where the input image for prediction are located.
 3) Set number of classes in NUM_CLASSES
 4) Set Pred_Dir the folder where you want the output annotated images to be saved
 5) Run script
