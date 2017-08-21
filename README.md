@@ -6,6 +6,9 @@ This is a simple implementation of a fully convolutional neural network (FCN). T
 The input for the net (Figure 1) are RGB image,
 The net produces pixelwise annotation as a matrix in size of the image with the value of each pixel is the pixel label (This should be the input in training).
 
+![](/Figure1.png)
+Figure 1) Semantic segmentation of liquid in glass with FCN. Red=Glass, Blue=Liquid, White=Background
+
 ## Requirements
 This network was run and trained with Python 3.6  Anaconda package and Tensorflow 1.1. The training was done using Nvidia GTX 1080, on Linux Ubuntu 16.04.
 
