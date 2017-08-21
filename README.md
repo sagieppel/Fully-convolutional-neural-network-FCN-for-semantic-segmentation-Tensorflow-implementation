@@ -4,7 +4,7 @@ This is a simple implementation of a fully convolutional neural network (FCN). T
 
 ## Details input/output
 The input for the net (Figure 1) are RGB image,
-The net produces pixelwise annotation as a matrix in size of the image with the value of each pixel is the pixel label (This should be the input in training).
+The net produces pixelwise annotation as a matrix in size of the image with the value of each pixel is the pixel label.
 
 ![](/Figure1.png)
 Figure 1) Semantic segmentation of liquid in glass with FCN. Red=Glass, Blue=Liquid, White=Background
@@ -24,7 +24,7 @@ Code for training the net available in TRAIN.py
 2) Set folder for ground truth labels in Label_DIR
 3) The Label Maps should be saved as png image with the same name as the corresponding image and png ending
 4) Download pretrained [vgg16](ftp://mi.eng.cam.ac.uk/pub/mttt2/models/vgg16.npy) model and put in model_path (should be done automatically if you have internet connection)
-5) Set number of classes number in NUM_CLASSES
+5) Set number of classes in NUM_CLASSES
 6) If you are interested in using validation set during training, set UseValidationSet=True and the validation image folder to Valid_Image_Dir (assume that the labels for the validation image are also in  Label_Dir)
 
 ### Instructions for predicting pixelwise annotation using trained net (in Inference.py)
