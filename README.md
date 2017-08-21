@@ -7,7 +7,7 @@ The input for the net is RGB image (Figure 1 right).
 The net produces pixelwise annotation as a matrix in the size of the image with the value of each pixel corresponding to its class (Figure 1 left).
 
 ![](/Figure1.png)
-Figure 1) Semantic segmentation of image of liquid in glass with FCN. Red=Glass, Blue=Liquid, White=Background
+Figure 1) Semantic segmentation of image of liquid in glass vessel with FCN. Red=Glass, Blue=Liquid, White=Background
 
 ## Requirements
 This network was run with Python 3.6  Anaconda package and Tensorflow 1.1. The training was done using Nvidia GTX 1080, on Linux Ubuntu 16.04.
