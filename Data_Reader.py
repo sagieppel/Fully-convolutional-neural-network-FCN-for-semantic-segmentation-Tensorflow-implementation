@@ -151,12 +151,6 @@ class Data_Reader:
             self.Epoch+=1
         batch_size=np.min([self.BatchSize,self.NumFiles-self.itr])
 
-        Sy=1
-        Sx=1
-
-#-----------Augument Images and labeles-------------------------------------------------------------------
-
-
         for f in range(batch_size):
 ##.............Read image and labels from files.........................................................
            Img = misc.imread(self.Image_Dir + "/" + self.OrderedFiles[self.itr])
