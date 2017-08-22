@@ -20,7 +20,7 @@ import scipy.misc as misc
 #...........................................Input and output folders.................................................
 Train_Image_Dir="Data_Zoo/Materials_In_Vessels/Train_Images/" # Images and labels for training
 Label_Dir="Data_Zoo/Materials_In_Vessels/LiquidSolidLabels/"# Annotetion in png format for train images and validation images (assume the name of the images and annotation images are the same (but annotation is always png format))
-UseValidationSet=True# do you want to use validation set in training
+UseValidationSet=False# do you want to use validation set in training
 Valid_Image_Dir="Data_Zoo/Materials_In_Vessels/Test_Images_All/"# Validation images that will be used to evaluate training (the  Labels are in same folder as the training set)
 logs_dir= "logs/"# "path to logs directory where trained model and information will be stored"
 if not os.path.exists(logs_dir): os.makedirs(logs_dir)
