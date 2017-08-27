@@ -1,6 +1,6 @@
 # Fully convolutional neural network (FCN) for semantic segmentation tensorflow simple implementation.
 
-This is a simple implementation of a fully convolutional neural network (FCN). The net is based on fully convolutional neural net described in the paper [Fully Convolutional Networks for Semantic Segmentation](https://arxiv.org/pdf/1605.06211.pdf).  The code is based on [FCN implementation](https://github.com/shekkizh/FCN.tensorflow)  by Sarath Shekkizhar with MIT license. The net is initialized using the pre-trained VGG16 model by Marvin Teichmann.
+This is a simple implementation of a fully convolutional neural network (FCN). The net is based on fully convolutional neural net described in the paper [Fully Convolutional Networks for Semantic Segmentation](https://arxiv.org/pdf/1605.06211.pdf).  The code is based on [FCN implementation](https://github.com/shekkizh/FCN.tensorflow)  by Sarath Shekkizhar with MIT license but replace the VGG19 encoder with VGG16 encoder. The net is initialized using the pre-trained VGG16 model by Marvin Teichmann.
 
 ## Details input/output
 The input for the net is RGB image (Figure 1 right).
@@ -21,11 +21,12 @@ This network was run with Python 3.6  Anaconda package and Tensorflow 1.1. The t
 ### Instructions for training (in TRAIN.py):
 In: TRAIN.py
 1) Set folder of training images in Train_Image_Dir
-2) Set folder for ground truth labels in Label_DIR
+2) Set folder for ground truth labels in Train_Label_DIR
 3) The Label Maps should be saved as png image with the same name as the corresponding image and png ending
 4) Download pretrained [vgg16](ftp://mi.eng.cam.ac.uk/pub/mttt2/models/vgg16.npy) model and put in model_path (should be done automatically if you have internet connection)
 5) Set number of classes in NUM_CLASSES
-6) If you are interested in using validation set during training, set UseValidationSet=True and the validation image folder to Valid_Image_Dir (assume that the labels for the validation image are also in  Label_Dir)
+6) If you are interested in using validation set during training, set UseValidationSet=True and the validation image folder to Valid_Image_Dir 
+   and set the folder with ground truth labels for the validation set in Valid_Label_Dir
 
 ### Instructions for predicting pixelwise annotation using trained net (in Inference.py)
 In: Inference.py
