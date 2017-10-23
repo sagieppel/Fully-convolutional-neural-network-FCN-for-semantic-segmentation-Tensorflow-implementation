@@ -50,4 +50,7 @@ This dataset can be downloaded from [here](https://drive.google.com/file/d/0B6nj
 
 MIT Scene Parsing Benchmark with over 20k pixel-wise annotated images can also be used for training and can be download from [here](http://sceneparsing.csail.mit.edu/)
 
-   
+## Trained model
+[Glass and transparent vessel recognition trained model](https://mega.nz/#!5K4jTB5D!J7KURngJe3Z7GJaXBPkqg54r9enn-7KyoZ4Y8HU2FhY)
+
+[Liquid Solid chemical phases recognition in transparent glassware trained model](https://mega.nz/#!tG5WQAjJ!DjBQIne6jkkmwLU0m76HG6HvEQJ5c4AzpzUVQ2oqbDM)
