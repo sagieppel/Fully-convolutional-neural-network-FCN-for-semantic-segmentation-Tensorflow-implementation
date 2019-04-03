@@ -70,8 +70,21 @@ def main(argv=None):
     if ckpt and ckpt.model_checkpoint_path: # if train model exist restore it
         saver.restore(sess, ckpt.model_checkpoint_path)
         print("Model restored...")
-#--------------------------- Create files for saving loss----------------------------------------------------------------------------------------------------------
+    
+    init = tf.global_variables_initializer()
+    saver_def = tf.train.Saver().as_saver_def()
+    
+    print('Run this operation to initialize variables     : ', init.name)
+    print('Run this operation for a train step            : ', train_op.name)
+    print('Feed this tensor to set the checkpoint filename: ', saver_def.filename_tensor_name)
+    print('Run this operation to save a checkpoint        : ', saver_def.save_tensor_name)
+    print('Run this operation to restore a checkpoint     : ', saver_def.restore_op_name)
+    
+    with open('fcn.pb', 'wb') as f:
+        f.write(tf.get_default_graph().as_graph_def().SerializeToString())
+    exit()
 
+#--------------------------- Create files for saving loss----------------------------------------------------------------------------------------------------------
     f = open(TrainLossTxtFile, "w")
     f.write("Iteration\tloss\t Learning Rate="+str(learning_rate))
     f.close()

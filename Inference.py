@@ -22,7 +22,7 @@ w=0.6# weight of overlay on image
 Pred_Dir="Output_Prediction/" # Library where the output prediction will be written
 model_path="Model_Zoo/vgg16.npy"# "Path to pretrained vgg16 model for encoder"
 NameEnd="" # Add this string to the ending of the file name optional
-NUM_CLASSES = 2 # Number of classes
+NUM_CLASSES = 4 # Number of classes
 #-------------------------------------------------------------------------------------------------------------------------
 CheckVGG16Model.CheckVGG16(model_path)# Check if pretrained vgg16 model avialable and if not try to download it
 
@@ -72,8 +72,11 @@ def main(argv=None):
         FileName=ValidReader.OrderedFiles[ValidReader.itr] #Get input image name
         Images = ValidReader.ReadNextBatchClean()  # load testing image
 
+        print('img = ',Images.shape, Images.dtype)
+
         # Predict annotation using net
         LabelPred = sess.run(Net.Pred, feed_dict={image: Images, keep_prob: 1.0})
+        print('pred = ', LabelPred.shape, LabelPred.dtype)
              #------------------------Save predicted labels overlay on images---------------------------------------------------------------------------------------------
         misc.imsave(Pred_Dir + "/OverLay/"+ FileName+NameEnd  , Overlay.OverLayLabelOnImage(Images[0],LabelPred[0], w)) #Overlay label on image
         misc.imsave(Pred_Dir + "/Label/" + FileName[:-4] + ".png" + NameEnd, LabelPred[0].astype(np.uint8))
