@@ -29,7 +29,7 @@ CheckVGG16Model.CheckVGG16(model_path)# Check if pretrained vgg16 model avialabl
 ################################################################################################################################################################################
 def main(argv=None):
       # .........................Placeholders for input image and labels........................................................................
-    keep_prob = tf.placeholder(tf.float32, name="keep_probability")  # Dropout probability
+    keep_prob = tf.placeholder(tf.float32, shape=(1,), name="keep_probability")  # Dropout probability
     image = tf.placeholder(tf.float32, shape=[None, None, None, 3], name="input_image")  # Input image batch first dimension image number second dimension width third dimension height 4 dimension RGB
 
     # -------------------------Build Net----------------------------------------------------------------------------------------------
