@@ -45,7 +45,7 @@ def train(loss_val, var_list):
 ################################################################################################################################################################################
 def main(argv=None):
     tf.reset_default_graph()
-    keep_prob= tf.placeholder(tf.float32, name="keep_probabilty") #Dropout probability
+    keep_prob= tf.placeholder(tf.float32, name="keep_probability") #Dropout probability
 #.........................Placeholders for input image and labels...........................................................................................
     image = tf.placeholder(tf.float32, shape=[None, None, None, 3], name="input_image") #Input image batch first dimension image number second dimension width third dimension height 4 dimension RGB
     GTLabel = tf.placeholder(tf.int32, shape=[None, None, None, 1], name="GTLabel")#Ground truth labels for training
@@ -65,14 +65,14 @@ def main(argv=None):
 # -------------load trained model if exist-----------------------------------------------------------------
     print("Setting up Saver...")
     saver = tf.train.Saver()
-    sess.run(tf.global_variables_initializer()) #Initialize variables
+    init = tf.global_variables_initializer()
+    sess.run(init) #Initialize variables
     ckpt = tf.train.get_checkpoint_state(logs_dir)
     if ckpt and ckpt.model_checkpoint_path: # if train model exist restore it
         saver.restore(sess, ckpt.model_checkpoint_path)
         print("Model restored...")
-    
-    init = tf.global_variables_initializer()
-    saver_def = tf.train.Saver().as_saver_def()
+    '''
+    saver_def = saver.as_saver_def()
     
     print('Run this operation to initialize variables     : ', init.name)
     print('Run this operation for a train step            : ', train_op.name)
@@ -83,7 +83,7 @@ def main(argv=None):
     with open('fcn.pb', 'wb') as f:
         f.write(tf.get_default_graph().as_graph_def().SerializeToString())
     exit()
-
+    '''
 #--------------------------- Create files for saving loss----------------------------------------------------------------------------------------------------------
     f = open(TrainLossTxtFile, "w")
     f.write("Iteration\tloss\t Learning Rate="+str(learning_rate))
@@ -98,7 +98,7 @@ def main(argv=None):
         feed_dict = {image: Images,GTLabel:GTLabels, keep_prob: 0.5}
         sess.run(train_op, feed_dict=feed_dict) # Train one cycle
 # --------------Save trained model------------------------------------------------------------------------------------------------------------------------------------------
-        if itr % 500 == 0 and itr>0:
+        if itr % 50 == 0 and itr>0:
             print("Saving Model to file in "+logs_dir)
             saver.save(sess, logs_dir + "model.ckpt", itr) #Save model
 #......................Write and display train loss..........................................................................
