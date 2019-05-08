@@ -29,7 +29,7 @@ CheckVGG16Model.CheckVGG16(model_path)# Check if pretrained vgg16 model avialabl
 ################################################################################################################################################################################
 def main(argv=None):
       # .........................Placeholders for input image and labels........................................................................
-    keep_prob = tf.placeholder(tf.float32, shape=(1,), name="keep_probability")  # Dropout probability
+    keep_prob = tf.placeholder_with_default([1.0], shape=(1,), name="keep_probability")  # Dropout probability
     image = tf.placeholder(tf.float32, shape=[None, None, None, 3], name="input_image")  # Input image batch first dimension image number second dimension width third dimension height 4 dimension RGB
 
     # -------------------------Build Net----------------------------------------------------------------------------------------------
@@ -75,7 +75,8 @@ def main(argv=None):
         print('img = ',Images.shape, Images.dtype)
 
         # Predict annotation using net
-        LabelPred = sess.run(Net.Pred, feed_dict={image: Images, keep_prob: 1.0})
+        k = np.array([1.0]).astype('float32')
+        LabelPred = sess.run(Net.Pred, feed_dict={image: Images, keep_prob: k})
         print('pred = ', LabelPred.shape, LabelPred.dtype)
              #------------------------Save predicted labels overlay on images---------------------------------------------------------------------------------------------
         misc.imsave(Pred_Dir + "/OverLay/"+ FileName+NameEnd  , Overlay.OverLayLabelOnImage(Images[0],LabelPred[0], w)) #Overlay label on image

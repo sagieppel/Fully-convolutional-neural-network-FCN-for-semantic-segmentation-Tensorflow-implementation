@@ -45,9 +45,9 @@ def train(loss_val, var_list):
 ################################################################################################################################################################################
 def main(argv=None):
     tf.reset_default_graph()
-    keep_prob= tf.placeholder(tf.float32, shape=(1,), name="keep_probability") #Dropout probability : tflite cannot input shape 0
+    keep_prob= tf.placeholder_with_default([1.0], shape=(1,), name="keep_probability") #Dropout probability : tflite cannot input shape 0
 #.........................Placeholders for input image and labels...........................................................................................
-    image = tf.placeholder(tf.float32, shape=[None, None, None, 3], name="input_image") #Input image batch first dimension image number second dimension width third dimension height 4 dimension RGB
+    image = tf.placeholder(tf.float32, shape=[None, None, None, 3], name="input_image") #Input image batch (batchnum, height, width, RGB)
     GTLabel = tf.placeholder(tf.int32, shape=[None, None, None, 1], name="GTLabel")#Ground truth labels for training
   #.........................Build FCN Net...............................................................................................
     Net =  BuildNetVgg16.BUILD_NET_VGG16(vgg16_npy_path=model_path) #Create class for the network
