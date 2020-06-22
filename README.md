@@ -2,6 +2,7 @@
 
 This is a simple implementation of a fully convolutional neural network (FCN). The net is based on fully convolutional neural net described in the paper [Fully Convolutional Networks for Semantic Segmentation](https://arxiv.org/pdf/1605.06211.pdf).  The code is based on [FCN implementation](https://github.com/shekkizh/FCN.tensorflow)  by Sarath Shekkizhar with MIT license but replaces the VGG19 encoder with VGG16 encoder. The net is initialized using the pre-trained VGG16 model by Marvin Teichmann.
 An improved version of this net in pytorch [is given here](https://github.com/sagieppel/Fully-convolutional-neural-network-FCN-for-semantic-segmentation-with-pytorch)
+## For New more accurate version of the net focused on recognition of materials in transparent vessels see this [link](https://github.com/sagieppel/Detecting-and-segmenting-and-classifying-materials-inside-vessels-in-images-using-convolutional-net)
 
 ## Details input/output
 The input for the net is RGB image (Figure 1 right).
@@ -55,3 +56,5 @@ MIT Scene Parsing Benchmark with over 20k pixel-wise annotated images can also b
 [Glass and transparent vessel recognition trained model](https://mega.nz/#!5K4jTB5D!J7KURngJe3Z7GJaXBPkqg54r9enn-7KyoZ4Y8HU2FhY)
 
 [Liquid Solid chemical phases recognition in transparent glassware trained model](https://mega.nz/#!tG5WQAjJ!DjBQIne6jkkmwLU0m76HG6HvEQJ5c4AzpzUVQ2oqbDM)
+
+## For New more accurate version of the net focused on recognition of materials in transparent vessels see this [link](https://github.com/sagieppel/Detecting-and-segmenting-and-classifying-materials-inside-vessels-in-images-using-convolutional-net)
