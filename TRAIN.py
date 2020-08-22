@@ -45,9 +45,9 @@ def train(loss_val, var_list):
 ################################################################################################################################################################################
 def main(argv=None):
     tf.reset_default_graph()
-    keep_prob= tf.placeholder(tf.float32, name="keep_probabilty") #Dropout probability
+    keep_prob= tf.placeholder_with_default([1.0], shape=(1,), name="keep_probability") #Dropout probability : tflite cannot input shape 0
 #.........................Placeholders for input image and labels...........................................................................................
-    image = tf.placeholder(tf.float32, shape=[None, None, None, 3], name="input_image") #Input image batch first dimension image number second dimension width third dimension height 4 dimension RGB
+    image = tf.placeholder(tf.float32, shape=[None, None, None, 3], name="input_image") #Input image batch (batchnum, height, width, RGB)
     GTLabel = tf.placeholder(tf.int32, shape=[None, None, None, 1], name="GTLabel")#Ground truth labels for training
   #.........................Build FCN Net...............................................................................................
     Net =  BuildNetVgg16.BUILD_NET_VGG16(vgg16_npy_path=model_path) #Create class for the network
@@ -65,13 +65,26 @@ def main(argv=None):
 # -------------load trained model if exist-----------------------------------------------------------------
     print("Setting up Saver...")
     saver = tf.train.Saver()
-    sess.run(tf.global_variables_initializer()) #Initialize variables
+    init = tf.global_variables_initializer()
+    sess.run(init) #Initialize variables
     ckpt = tf.train.get_checkpoint_state(logs_dir)
     if ckpt and ckpt.model_checkpoint_path: # if train model exist restore it
         saver.restore(sess, ckpt.model_checkpoint_path)
         print("Model restored...")
+    
+    saver_def = saver.as_saver_def()
+    
+    print('Run this operation to initialize variables     : ', init.name)
+    print('Run this operation for a train step            : ', train_op.name)
+    print('Feed this tensor to set the checkpoint filename: ', saver_def.filename_tensor_name)
+    print('Run this operation to save a checkpoint        : ', saver_def.save_tensor_name)
+    print('Run this operation to restore a checkpoint     : ', saver_def.restore_op_name)
+    
+    with open('fcn.pb', 'wb') as f:
+        f.write(tf.get_default_graph().as_graph_def().SerializeToString())
+    exit()
+    
 #--------------------------- Create files for saving loss----------------------------------------------------------------------------------------------------------
-
     f = open(TrainLossTxtFile, "w")
     f.write("Iteration\tloss\t Learning Rate="+str(learning_rate))
     f.close()
@@ -85,7 +98,7 @@ def main(argv=None):
         feed_dict = {image: Images,GTLabel:GTLabels, keep_prob: 0.5}
         sess.run(train_op, feed_dict=feed_dict) # Train one cycle
 # --------------Save trained model------------------------------------------------------------------------------------------------------------------------------------------
-        if itr % 500 == 0 and itr>0:
+        if itr % 50 == 0 and itr>0:
             print("Saving Model to file in "+logs_dir)
             saver.save(sess, logs_dir + "model.ckpt", itr) #Save model
 #......................Write and display train loss..........................................................................

@@ -22,14 +22,14 @@ w=0.6# weight of overlay on image
 Pred_Dir="Output_Prediction/" # Library where the output prediction will be written
 model_path="Model_Zoo/vgg16.npy"# "Path to pretrained vgg16 model for encoder"
 NameEnd="" # Add this string to the ending of the file name optional
-NUM_CLASSES = 2 # Number of classes
+NUM_CLASSES = 4 # Number of classes
 #-------------------------------------------------------------------------------------------------------------------------
 CheckVGG16Model.CheckVGG16(model_path)# Check if pretrained vgg16 model avialable and if not try to download it
 
 ################################################################################################################################################################################
 def main(argv=None):
       # .........................Placeholders for input image and labels........................................................................
-    keep_prob = tf.placeholder(tf.float32, name="keep_probabilty")  # Dropout probability
+    keep_prob = tf.placeholder_with_default([1.0], shape=(1,), name="keep_probability")  # Dropout probability
     image = tf.placeholder(tf.float32, shape=[None, None, None, 3], name="input_image")  # Input image batch first dimension image number second dimension width third dimension height 4 dimension RGB
 
     # -------------------------Build Net----------------------------------------------------------------------------------------------
@@ -72,8 +72,12 @@ def main(argv=None):
         FileName=ValidReader.OrderedFiles[ValidReader.itr] #Get input image name
         Images = ValidReader.ReadNextBatchClean()  # load testing image
 
+        print('img = ',Images.shape, Images.dtype)
+
         # Predict annotation using net
-        LabelPred = sess.run(Net.Pred, feed_dict={image: Images, keep_prob: 1.0})
+        k = np.array([1.0]).astype('float32')
+        LabelPred = sess.run(Net.Pred, feed_dict={image: Images, keep_prob: k})
+        print('pred = ', LabelPred.shape, LabelPred.dtype)
              #------------------------Save predicted labels overlay on images---------------------------------------------------------------------------------------------
         misc.imsave(Pred_Dir + "/OverLay/"+ FileName+NameEnd  , Overlay.OverLayLabelOnImage(Images[0],LabelPred[0], w)) #Overlay label on image
         misc.imsave(Pred_Dir + "/Label/" + FileName[:-4] + ".png" + NameEnd, LabelPred[0].astype(np.uint8))
